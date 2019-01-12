@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
 import App from "./App";
@@ -10,10 +11,9 @@ import { counter } from "./index.redux";
 // 默认状态没有type，返回10
 const store = createStore(counter, applyMiddleware(thunk));
 
-function render() {
-  ReactDom.render(<App store={store} />, document.querySelector("#root"));
-}
-
-render();
-// state更新的时候，调用render函数，刷新试图
-store.subscribe(render);
+ReactDom.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector("#root")
+);
