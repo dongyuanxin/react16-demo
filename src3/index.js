@@ -1,11 +1,9 @@
+import { createStore, applyMiddleware } from "redux";
 import React from "react";
 import ReactDom from "react-dom";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-
 import App from "./App";
 import { counter } from "./index.redux";
-
+import thunk from "redux-thunk";
 // 初始化state
 // 默认状态没有type，返回10
 const store = createStore(counter, applyMiddleware(thunk));
